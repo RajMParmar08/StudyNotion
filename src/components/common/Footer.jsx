@@ -43,12 +43,12 @@ export const Footer = () => {
               <h4>Contact us</h4>
               <ul>
                 <li>
-                  <a href="mailto:parthvaghela791@gmail.com?body=fell free to type">
+                  <a href="mailto:studycraft@gmail.com?body=fell free to type">
                     Gmail
                   </a>
                 </li>
                 <li>
-                  <a href="tel:8449035579">Helpline No</a>
+                  <a href="tel:1112223334">Helpline No</a>
                 </li>
               </ul>
             </div>
@@ -56,16 +56,20 @@ export const Footer = () => {
               <h4>follow us</h4>
               <div className="social-links">
                 <a
-                  href="https://www.linkedin.com/in/parth-vaghela-7a9b1c/"
+                  // href="https://www.linkedin.com/in/parth-vaghela-7a9b1c/"
                   target="blank"
                 >
                   <FaLinkedin className=" mx-auto mt-3 scale-125" />
                 </a>
-                <a href="https://twitter.com/ankitmalik84" target="blank">
+                <a 
+                // href="https://twitter.com/ankitmalik84" 
+                target="blank">
                   <FaTwitter className=" mx-auto mt-3 scale-125" />
                 </a>
 
-                <a href="https://www.instagram.com/parthus__48/" target="blank">
+                <a 
+                // href="https://www.instagram.com/parthus__48/" 
+                target="blank">
                   <FaInstagram className=" mx-auto mt-3 scale-125" />
                 </a>
               </div>
@@ -73,10 +77,8 @@ export const Footer = () => {
           </div>
         </div>
         <div className="p-8 flex flex-col sm:flex-row justify-center items-center gap-4 ">
-        <p className="text-white text-2xl my-2  ">© 2023</p>
-        <div className=" ">
-        <img  src={Logo} alt=""/>
-        </div>
+        <p className="text-white text-2xl my-2  ">© 2025 Study Craft</p>
+       
       </div>
       
       </footer>
