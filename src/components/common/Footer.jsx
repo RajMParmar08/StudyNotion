@@ -4,8 +4,11 @@ import React from "react";
 import Logo from "../../assets/Logo/Logo-Full-Light.png";
 import "./Footer.css";
 import { FaLinkedin, FaTwitter, FaGoogle, FaInstagram } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"
 
 export const Footer = () => {
+    const navigate = useNavigate()
+  
   return (
     <div>
       <footer className="footer">
@@ -15,14 +18,12 @@ export const Footer = () => {
               <h4>About</h4>
               <ul>
                 <li>
-                  <a href="#">about us</a>
+                  <a href="/about"  >about us</a>
                 </li>
                 <li>
-                  <a href="#">our services</a>
+                  <a href="/about">our services</a>
                 </li>
-                <li>
-                  <a href="#">privacy policy</a>
-                </li>
+                
               </ul>
             </div>
             <div className="footer-col">
@@ -43,12 +44,12 @@ export const Footer = () => {
               <h4>Contact us</h4>
               <ul>
                 <li>
-                  <a href="mailto:studycraft@gmail.com?body=fell free to type">
+                  <a href="/contact">
                     Gmail
                   </a>
                 </li>
                 <li>
-                  <a href="tel:1112223334">Helpline No</a>
+                  <a href="/contact">Helpline No</a>
                 </li>
               </ul>
             </div>
