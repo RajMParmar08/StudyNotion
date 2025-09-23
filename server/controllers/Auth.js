@@ -32,7 +32,7 @@ exports.signup = async (req, res) => {
 			!confirmPassword 
 			//!otp
 		) {
-			debugger
+			
 			return res.status(403).send({
 				success: false,
 				message: "All Fields are required",

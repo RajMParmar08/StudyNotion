@@ -1,49 +1,49 @@
-import { useEffect, useState, useRef } from "react"
-import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai"
-import { BsChevronDown } from "react-icons/bs"
-import { useSelector } from "react-redux"
-import { Link, matchPath, useLocation } from "react-router-dom"
-import useOnClickOutside from "../../hooks/useOnClickOutside"
+import { useEffect, useState, useRef } from "react";
+import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai";
+import { BsChevronDown } from "react-icons/bs";
+import { useSelector } from "react-redux";
+import { Link, matchPath, useLocation } from "react-router-dom";
+import useOnClickOutside from "../../hooks/useOnClickOutside";
 
-import logo from "../../assets/Logo/Logo-Full-Light.png"
-import { NavbarLinks } from "../../data/navbar-links"
-import { apiConnector } from "../../services/apiconnector"
-import { categories } from "../../services/apis"
-import { ACCOUNT_TYPE } from "../../utils/constants"
-import ProfileDropdown from "../core/Auth/ProfileDropDown"
+import logo from "../../assets/Logo/Logo-Full-Light.png";
+import { NavbarLinks } from "../../data/navbar-links";
+import { apiConnector } from "../../services/apiconnector";
+import { categories } from "../../services/apis";
+import { ACCOUNT_TYPE } from "../../utils/constants";
+import ProfileDropdown from "../core/Auth/ProfileDropDown";
 
 function Navbar() {
-  const { token } = useSelector((state) => state.auth)
-  const { user } = useSelector((state) => state.profile)
-  const { totalItems } = useSelector((state) => state.cart)
-  const location = useLocation()
+  const { token } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.profile);
+  const { totalItems } = useSelector((state) => state.cart);
+  const location = useLocation();
 
-  const ref = useRef(null)
-  const [subLinks, setSubLinks] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [open,setOpen] = useState(true);
+  const ref = useRef(null);
+  const [subLinks, setSubLinks] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(true);
 
-  useOnClickOutside(ref, () => setOpen(false))
+  useOnClickOutside(ref, () => setOpen(false));
 
   useEffect(() => {
-    ;(async () => {
-      setLoading(true)
+    (async () => {
+      setLoading(true);
       try {
-        const res = await apiConnector("GET", categories.CATEGORIES_API)
-        setSubLinks(res.data.data)
-        console.log("SUBLINKSSS",res.data.data)
+        const res = await apiConnector("GET", categories.CATEGORIES_API);
+        setSubLinks(res.data.data);
+        console.log("SUBLINKSSS", res.data.data);
       } catch (error) {
-        console.log("Could not fetch Categories.", error)
+        console.log("Could not fetch Categories.", error);
       }
-      setLoading(false)
-    })()
-  }, [])
+      setLoading(false);
+    })();
+  }, []);
 
   // console.log("sub links", subLinks)
 
   const matchRoute = (route) => {
-    return matchPath({ path: route }, location.pathname)
-  }
+    return matchPath({ path: route }, location.pathname);
+  };
 
   return (
     <div
@@ -53,7 +53,7 @@ function Navbar() {
     >
       <div className="flex w-[96%] md:w-11/12 max-w-maxContent items-center justify-between">
         {/* Logo */}
-       
+
         {/* Navigation links */}
         <nav className="">
           <ul className="flex md:gap-x-6 text-richblack-25">
@@ -74,8 +74,9 @@ function Navbar() {
                         <div className="absolute left-[50%] top-0 -z-10 h-6 w-6 translate-x-[80%] translate-y-[-40%] rotate-45 select-none rounded bg-richblack-5"></div>
                         {loading ? (
                           <p className="text-center">Loading...</p>
-                        ) : subLinks.length ? (
+                        ) : subLinks?.length ? (
                           <>
+                            
                             {subLinks
                               ?.filter(
                                 (subLink) => subLink?.courses?.length > 0
@@ -145,45 +146,44 @@ function Navbar() {
           {token !== null && <ProfileDropdown />}
         </div>
 
-
-        <button className="relative mr-1 md:hidden" onClick={() => setOpen(true)}>
-      <div className="flex items-center gap-x-1">
-        <AiOutlineMenu fontSize={24} fill="#AFB2BF" />
-      </div>
-      {open && (
-        <div
-          onClick={(e) => e.stopPropagation()}
-          className="absolute top-[118%] right-0 z-[1000] divide-y-[1px] divide-richblack-700 w-[120px] overflow-hidden rounded-md border-[1px] border-richblack-700 bg-richblack-800 "
-          ref={ref}
+        <button
+          className="relative mr-1 md:hidden"
+          onClick={() => setOpen(true)}
         >
-
-{NavbarLinks.map((link, index) => (
-              <li key={index} className="list-none">
-                {link.title === "Catalog" ? (
-                  <>
-                  </>
-                ) : (
-                  <Link to={link?.path}>
-                    <p
-                      className={`${
-                        matchRoute(link?.path)
-                          ? "text-yellow-25 py-2"
-                          : "text-richblack-25 py-2"
-                      }`}
-                    >
-                      {link.title}
-                    </p>
-                  </Link>
-                )}
-              </li>
-            ))}
-          
-        </div>
-      )}
-    </button>
+          <div className="flex items-center gap-x-1">
+            <AiOutlineMenu fontSize={24} fill="#AFB2BF" />
+          </div>
+          {open && (
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="absolute top-[118%] right-0 z-[1000] divide-y-[1px] divide-richblack-700 w-[120px] overflow-hidden rounded-md border-[1px] border-richblack-700 bg-richblack-800 "
+              ref={ref}
+            >
+              {NavbarLinks.map((link, index) => (
+                <li key={index} className="list-none">
+                  {link.title === "Catalog" ? (
+                    <></>
+                  ) : (
+                    <Link to={link?.path}>
+                      <p
+                        className={`${
+                          matchRoute(link?.path)
+                            ? "text-yellow-25 py-2"
+                            : "text-richblack-25 py-2"
+                        }`}
+                      >
+                        {link.title}
+                      </p>
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </div>
+          )}
+        </button>
       </div>
     </div>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
